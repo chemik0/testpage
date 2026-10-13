@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sensoria — Zajęcia aktywizujące</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f6f1e8;
+  --sand:#ece3d2;
+  --sand-deep:#ddd0b8;
+  --ink:#3c342b;
+  --ink-soft:#5c5246;
+  --accent:#9a6b3f;
+  --accent-deep:#7d5430;
+  --warm:#caa46e;
+  --line:#e0d6c2;
+  --white:#fffdf8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Jost',sans-serif;
+  color:var(--ink);
+  background:var(--cream);
+  line-height:1.65;
+  font-weight:300;
+}
+.serif{font-family:'Cormorant Garamond',serif;}
+
+/* ---------- NAV ---------- */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(246,241,232,.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:1200px;margin:0 auto;padding:1rem 1.5rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;
+  letter-spacing:.18em;color:var(--ink);text-decoration:none;text-transform:uppercase;
+}
+.nav-links{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;}
+.nav-links a{
+  text-decoration:none;color:var(--ink-soft);
+  font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:.45rem .7rem;border-radius:99px;transition:.25s;
+}
+.nav-links a:hover{background:var(--sand);color:var(--ink);}
+.nav-cta{
+  background:var(--accent);color:var(--white)!important;
+  padding:.55rem 1.1rem!important;border-radius:99px;
+}
+.nav-cta:hover{background:var(--accent-deep)!important;color:var(--white)!important;}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;min-height:88vh;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  padding:4rem 1.5rem;
+  background:linear-gradient(180deg,#efe7d6,#f6f1e8 60%);
+  overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 20% 20%, rgba(202,164,110,.18), transparent 45%),
+             radial-gradient(circle at 80% 80%, rgba(154,107,63,.14), transparent 45%);
+}
+.hero-inner{position:relative;max-width:64rem;}
+.hero-kicker{
+  font-size:.85rem;letter-spacing:.42em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:1.6rem;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3rem,9vw,6rem);font-weight:600;line-height:1.02;
+  letter-spacing:.04em;color:var(--ink);
+}
+.hero-sub{
+  font-size:clamp(1.1rem,2.6vw,1.6rem);color:var(--ink-soft);
+  margin-top:1.4rem;letter-spacing:.12em;
+}
+.hero-line{width:4rem;height:1px;background:var(--warm);margin:2.2rem auto;}
+.hero-scroll{
+  margin-top:2.5rem;font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);
+  display:inline-flex;align-items:center;gap:.6rem;
+}
+.hero-scroll::after{content:"↓";font-size:1rem;}
+
+/* ---------- SECTION BASICS ---------- */
+section{padding:5.5rem 1.5rem;}
+.container{max-width:1080px;margin:0 auto;}
+.section-head{max-width:42rem;margin-bottom:3rem;}
+.section-eyebrow{
+  font-size:.78rem;letter-spacing:.34em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:1.2rem;
+}
+.section-head h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,5vw,3.2rem);font-weight:600;line-height:1.12;color:var(--ink);
+}
+.section-head p{color:var(--ink-soft);margin-top:1.1rem;font-size:1.05rem;}
+
+/* two-col text+image */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center;}
+.split.flip .split-text{order:2;}
+.split.flip .split-media{order:1;}
+.split-text h2{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);
+  font-weight:600;line-height:1.15;margin-bottom:1.6rem;color:var(--ink);
+}
+.split-text p{color:var(--ink-soft);margin-bottom:1.2rem;font-size:1.02rem;}
+.split-media img{width:100%;height:100%;object-fit:cover;min-height:22rem;border-radius:4px;box-shadow:0 20px 50px rgba(60,52,43,.12);}
+
+.cta-line{
+  margin-top:2rem;padding-top:1.8rem;border-top:1px solid var(--line);
+  font-family:'Cormorant Garamond',serif;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;font-size:1.05rem;color:var(--accent-deep);
+}
+
+/* ---------- OFFER CARDS ---------- */
+.offer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
+.card{
+  position:relative;overflow:hidden;border-radius:4px;background:var(--white);
+  box-shadow:0 10px 30px rgba(60,52,43,.08);text-decoration:none;color:var(--ink);
+  display:block;transition:transform .3s ease;
+}
+.card:hover{transform:translateY(-6px);}
+.card-img{position:relative;overflow:hidden;aspect-ratio:4/5;}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.card:hover .card-img img{transform:scale(1.05);}
+.card-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(60,52,43,.55));}
+.card-txt{position:absolute;left:0;right:0;bottom:0;padding:1.4rem;z-index:2;}
+.card-txt h3{
+  font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.5rem;
+  color:var(--white);letter-spacing:.02em;
+}
+.card-txt .card-chips{
+  display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.6rem;
+}
+.card-txt span.mini{
+  font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--white);border:1px solid rgba(255,255,255,.5);border-radius:99px;padding:.25rem .6rem;
+}
+
+/* highlight band (keywords) */
+.band{
+  text-align:center;padding:3.2rem 1.5rem;
+  font-family:'Cormorant Garamond',serif;font-weight:600;
+  font-size:clamp(1.1rem,3vw,1.7rem);letter-spacing:.24em;text-transform:uppercase;
+  color:var(--accent-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:var(--sand);
+}
+.band.dark{background:var(--ink);color:var(--sand);border:none;}
+
+/* ---------- GROUP / KIDS ---------- */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;}
+.info-item h3{
+  font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.45rem;margin-bottom:.8rem;color:var(--ink);
+}
+.info-item p{color:var(--ink-soft);font-size:1rem;}
+
+/* ---------- AUDIENCE (dla kogo) ---------- */
+.audience{display:grid;grid-template-columns:repeat(2,1fr);gap:1.6rem;}
+.aud{
+  background:var(--white);border:1px solid var(--line);border-radius:4px;padding:2.2rem;
+  transition:.25s;
+}
+.aud:hover{border-color:var(--warm);box-shadow:0 12px 30px rgba(154,107,63,.12);}
+.aud .num{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--warm);letter-spacing:.2em;font-weight:600;}
+.aud h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.7rem;margin:.6rem 0 1rem;color:var(--ink);}
+.aud p{color:var(--ink-soft);font-size:.98rem;}
+
+/* ---------- CENNIK ---------- */
+.price-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:2.5rem;align-items:start;}
+.price-col h3{
+  font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.5rem;
+  margin-bottom:1.4rem;color:var(--ink);padding-bottom:.6rem;border-bottom:1px solid var(--line);
+}
+.price-item{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.85rem 0;border-bottom:1px dashed var(--line);}
+.price-item .what{font-size:1rem;color:var(--ink-soft);}
+.price-item .what b{color:var(--ink);font-weight:500;}
+.price-item .cost{font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--accent-deep);white-space:nowrap;}
+.price-note{font-size:.82rem;color:var(--ink-soft);margin-top:.6rem;}
+.package{
+  background:var(--white);border:1px solid var(--line);border-radius:8px;padding:1.8rem;
+  display:flex;flex-direction:column;gap:1.2rem;
+}
+.package .p-name{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.4rem;color:var(--ink);}
+.package .p-desc{font-size:.92rem;color:var(--ink-soft);}
+.package .p-price{font-size:1.05rem;color:var(--ink);}
+.package .p-price s{color:var(--ink-soft);opacity:.7;font-weight:300;}
+.package .p-price b{color:var(--accent-deep);font-weight:600;}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--ink);color:var(--sand);padding:4rem 1.5rem;text-align:center;}
+footer .f-brand{
+  font-family:'Cormorant Garamond',serif;font-size:1.8rem;letter-spacing:.3em;
+  text-transform:uppercase;font-weight:600;color:var(--sand);
+}
+footer .f-tag{color:var(--warm);letter-spacing:.2em;font-size:.8rem;text-transform:uppercase;margin-top:.6rem;}
+footer .f-nav{margin:2rem 0;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+footer .f-nav a{color:var(--sand);text-decoration:none;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;}
+footer .f-nav a:hover{color:var(--warm);}
+footer .f-copy{font-size:.78rem;color:rgba(246,241,232,.5);margin-top:2rem;}
+
+/* ---------- RESPONSIVE ---------- */
+.menu-btn{display:none;background:none;border:none;cursor:pointer;}
+.menu-btn span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;border-radius:2px;}
+
+@media(max-width:900px){
+  .split,.two-col{grid-template-columns:1fr;gap:2rem;}
+  .split.flip .split-media{order:1;}
+  .split.flip .split-text{order:2;}
+  .offer-grid{grid-template-columns:repeat(2,1fr);}
+  .price-wrap{grid-template-columns:1fr;}
+  .audience{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:640px){
+  section{padding:4rem 1.25rem;}
+  .offer-grid{grid-template-columns:1fr;}
+  .audience{grid-template-columns:1fr;}
+  .nav-links{
+    display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;
+    background:var(--cream);border-bottom:1px solid var(--line);padding:1rem 1.5rem;align-items:flex-start;gap:.2rem;
+  }
+  .nav-links.open{display:flex;}
+  .menu-btn{display:block;}
+  .split-media img{min-height:16rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo serif">Sensoria</a>
+    <button class="menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="#idea">Nasza idea</a>
+      <a href="#wyrroznia">Co nas wyróżnia</a>
+      <a href="#oferta">Oferta</a>
+      <a href="#dzieci">Dla dzieci</a>
+      <a href="#dla-kogo">Dla kogo</a>
+      <a href="#cennik">Cennik</a>
+      <a href="#cennik" class="nav-cta">Kontakt</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-kicker serif">Zajęcia aktywizujące</div>
+    <h1>Sensoria</h1>
+    <p class="hero-sub serif">Chwile, które angażują zmysły i&nbsp;tworzą wspomnienia.</p>
+    <div class="hero-line"></div>
+    <a href="#idea" class="hero-scroll">Poznaj nas</a>
+  </div>
+</header>
+
+<!-- NASZA IDEA -->
+<section class="split" id="idea" style="background:var(--cream);">
+  <div class="container split">
+    <div class="split-text">
+      <div class="section-eyebrow">Nasza idea</div>
+      <h2>Chwile, które mają znaczenie.</h2>
+      <p>W codziennym pośpiechu łatwo zapomnieć, jak wiele znaczą małe rzeczy — spokojna rozmowa, ulubiona muzyka, piękny zapach, dotyk naturalnych materiałów czy wspólne tworzenie czegoś wyjątkowego.</p>
+      <p>Tworzymy indywidualne doświadczenia, które pozwalają na chwilę zwolnić, odkrywać zmysły, wracać do pięknych wspomnień i czerpać przyjemność z chwili obecnej.</p>
+      <p>Każde spotkanie jest inne — dopasowane do osoby, jej zainteresowań, historii oraz tego, co sprawia jej radość.</p>
+      <p>Łączymy kreatywność, sensorykę, rozmowę, muzykę, sztukę i piękne przedmioty, tworząc kameralne chwile pełne uważności, inspiracji i przyjemności.</p>
+      <div class="cta-line">Zatrzymaj się · Poczuj · Wspominaj · Twórz</div>
+    </div>
+    <div class="split-media">
+      <img src="img/idea.jpg" alt="Nasza idea — dłonie i naturalne materiały">
+    </div>
+  </div>
+</section>
+
+<div class="band">Zatrzymaj się &nbsp;·&nbsp; Poczuj &nbsp;·&nbsp; Wspominaj &nbsp;·&nbsp; Twórz</div>
+
+<!-- CO NAS WYRÓŻNIA -->
+<section id="wyrroznia" style="background:var(--white);">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Co nas wyróżnia</div>
+      <h2>Doświadczenie stworzone z myślą o Tobie.</h2>
+      <p>Nasze spotkania powstały z myślą o tym, aby zwykły czas zamienić w wyjątkowe doświadczenie. Wyróżnia nas młoda energia i świeże spojrzenie na spędzanie czasu.</p>
+    </div>
+    <div class="two-col">
+      <div class="info-item">
+        <h3>Uważność i dopasowanie</h3>
+        <p>Każde spotkanie prowadzimy z uważnością, spokojem i cierpliwością, dopasowując jego przebieg do osoby, jej nastroju, zainteresowań i możliwości.</p>
+      </div>
+      <div class="info-item">
+        <h3>Dbałość o każdy detal</h3>
+        <p>Zioła, przyprawy, suszone owoce, naturalne materiały czy elementy do tworzenia są starannie przygotowane i pięknie zapakowane — w eleganckich słoiczkach, pudełkach i pojemnikach.</p>
+      </div>
+      <div class="info-item">
+        <h3>Pełna oprawa</h3>
+        <p>Całość dopełnia estetyczna oprawa, muzyka, delikatne światło i zapach. Chcemy, aby już samo przygotowanie spotkania było małą przyjemnością dla zmysłów.</p>
+      </div>
+      <div class="info-item">
+        <h3>Więcej niż opieka</h3>
+        <p>To nie jest zwykła opieka ani tradycyjne zajęcia. To starannie przygotowany czas, w którym liczy się człowiek, atmosfera i każdy detal. Bo wierzymy, że troska o drugą osobę może być piękna, elegancka i pełna małych przyjemności.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band">Młoda energia &nbsp;·&nbsp; Uważność &nbsp;·&nbsp; Estetyka &nbsp;·&nbsp; Doświadczenie dla Ciebie</div>
+
+<!-- OFERTA -->
+<section id="oferta" style="background:var(--cream);">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Oferta indywidualna</div>
+      <h2>Wybór doświadczeń</h2>
+      <p>Każde doświadczenie dopasowujemy do osoby — jej zainteresowań, wspomnień i tego, co sprawia jej radość.</p>
+    </div>
+    <div class="offer-grid">
+      <a class="card" href="#ogrod-zmyslow">
+        <div class="card-img"><img src="img/ogrod_zmyslow.jpg" alt="Ogród Zmysłów"></div>
+        <div class="card-txt">
+          <h3>Ogród Zmysłów</h3>
+          <div class="card-chips"><span class="mini">zapachy</span><span class="mini">faktury</span></div>
+        </div>
+      </a>
+      <a class="card" href="#aromaty">
+        <div class="card-img"><img src="img/aromaty.jpg" alt="Chwile pełne aromatu"></div>
+        <div class="card-txt">
+          <h3>Chwile pełne aromatu</h3>
+          <div class="card-chips"><span class="mini">herbaty</span><span class="mini">przyprawy</span></div>
+        </div>
+      </a>
+      <a class="card" href="#kompozycja">
+        <div class="card-img"><img src="img/kompozycja.jpg" alt="Kompozycja natury"></div>
+        <div class="card-txt">
+          <h3>Kompozycja natury</h3>
+          <div class="card-chips"><span class="mini">bukiety</span><span class="mini">natura</span></div>
+        </div>
+      </a>
+      <a class="card" href="#zmysl-dloniach">
+        <div class="card-img"><img src="img/zmysl_dloniach.jpg" alt="Zmysł w dłoniach"></div>
+        <div class="card-txt">
+          <h3>Zmysł w dłoniach</h3>
+          <div class="card-chips"><span class="mini">tworzenie</span><span class="mini">ekspresja</span></div>
+        </div>
+      </a>
+      <a class="card" href="#rytual">
+        <div class="card-img"><img src="img/rytual.jpg" alt="Rytuał dłoni"></div>
+        <div class="card-txt">
+          <h3>Rytuał dłoni</h3>
+          <div class="card-chips"><span class="mini">relaks</span><span class="mini">masaż</span></div>
+        </div>
+      </a>
+      <a class="card" href="#sprawne-dlonie">
+        <div class="card-img"><img src="img/sprawne_dlonie.jpg" alt="Sprawne dłonie"></div>
+        <div class="card-txt">
+          <h3>Sprawne dłonie</h3>
+          <div class="card-chips"><span class="mini">ćwiczenia</span><span class="mini">samodzielność</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- OGRÓD ZMYSŁÓW -->
+<section id="ogrod-zmyslow" class="split" style="background:var(--white);">
+  <div class="container split">
+    <div class="split-text">
+      <div class="section-eyebrow">Doświadczenie 01</div>
+      <h2>Ogród Zmysłów</h2>
+      <p>Podczas spotkania poznasz aromat ziół, kwiatów i&nbsp;przypraw. Odkryjesz różnorodne faktury, a&nbsp;następnie stworzysz własną kompozycję z&nbsp;wybranych elementów.</p>
+      <p>Każdy kolor, zapach i&nbsp;faktura może stać się impulsem do koncentracji, aktywnego poznawania, pracy dłoni oraz przywoływania skojarzeń i&nbsp;wspomnień.</p>
+      <p>Całe doświadczenie opiera się na swobodnej, uważnej rozmowie. Pytania, skojarzenia i&nbsp;historie tworzą przestrzeń do przywoływania wspomnień, ćwiczenia pamięci i&nbsp;aktywnego angażowania się w&nbsp;rozmowę.</p>
+      <div class="cta-line">Poczuj · Odkryj · Poznawaj · Wspominaj · Stwórz</div>
+    </div>
+    <div class="split-media">
+      <img src="img/ogrod_zmyslow.jpg" alt="Ogród Zmysłów — suszone kwiaty i zioła">
+    </div>
+  </div>
+</section>
+
+<!-- CHWILE PEŁNE AROMATU -->
+<section id="aromaty" class="split flip" style="background:var(--cream);">
+  <div class="container split">
+    <div class="split-text">
+      <div class="section-eyebrow">Doświadczenie 02</div>
+      <h2>Chwile pełne aromatu</h2>
+      <p>Podczas spotkania poznasz różne herbaty, ich aromaty i&nbsp;historie. Odkryjesz pudełko rozgrzewających przypraw, a&nbsp;także spróbujesz wybranych suszonych owoców.</p>
+      <p>Na zakończenie stworzysz własną mieszankę herbacianą, dobierając składniki zgodnie z&nbsp;własnymi upodobaniami.</p>
+      <p>Każdy smak i&nbsp;zapach staje się początkiem swobodnej rozmowy i&nbsp;osobistych skojarzeń. Wspólne odkrywanie aromatów może przywoływać wspomnienia, pobudzać pamięć i&nbsp;zachęcać do aktywnego udziału w&nbsp;rozmowie.</p>
+      <p>Cała aktywność odbywa się w&nbsp;klimacie świec, muzyki wedle uznania i&nbsp;relaksacyjnych zapachów.</p>
+      <div class="cta-line">Poczuj ciepło · Posmakuj wspomnień · Stwórz swój aromat</div>
+    </div>
+    <div class="split-media">
+      <img src="img/aromaty.jpg" alt="Chwile pełne aromatu — herbaty i przyprawy">
+    </div>
+  </div>
+</section>
+
+<!-- KOMPOZYCJA NATURY -->
+<section id="kompozycja" class="split" style="background:var(--white);">
+  <div class="container split">
+    <div class="split-text">
+      <div class="section-eyebrow">Doświadczenie 03</div>
+      <h2>Kompozycja natury</h2>
+      <p>Delikatne światło świec, subtelny zapach naturalnych olejków i&nbsp;spokojna muzyka tworzą wyjątkową atmosferę.</p>
+      <p>Wśród świeżych i&nbsp;suszonych kwiatów, ziół oraz naturalnych dodatków skomponujesz własny, niepowtarzalny bukiet.</p>
+      <p>Podczas tworzenia towarzyszyć Ci będzie swobodna rozmowa, w&nbsp;tym o&nbsp;skojarzeniach i&nbsp;wspomnieniach — co pomaga w&nbsp;ćwiczeniu pamięci i&nbsp;zachęca do aktywnego udziału.</p>
+      <div class="cta-line">Poczuj · Wspomnij · Stwórz</div>
+    </div>
+    <div class="split-media">
+      <img src="img/kompozycja.jpg" alt="Kompozycja natury — bukiet kwiatów">
+    </div>
+  </div>
+</section>
+
+<!-- ZMYSŁ W DŁONIACH -->
+<section id="zmysl-dloniach" class="split flip" style="background:var(--cream);">
+  <div class="container split">
+    <div class="split-text">
+      <div class="section-eyebrow">Doświadczenie 04</div>
+      <h2>Zmysł w dłoniach</h2>
+      <p>Wyjątkowe spotkanie, które łączy twórczą ekspresję z&nbsp;różnorodnymi doświadczeniami dla dłoni.</p>
+      <p>Podczas każdego spotkania odkryjesz inną formę tworzenia — od komponowania bransoletek i&nbsp;biżuterii, przez malowanie i&nbsp;prace artystyczne, aż po lepienie i&nbsp;ugniatanie mas plastycznych czy tworzenie obrazów dłońmi.</p>
+      <p>Różnorodne faktury, kształty i&nbsp;materiały angażują zmysł dotyku, wspierają sprawność dłoni, koncentrację i&nbsp;koordynację, a&nbsp;jednocześnie dają przestrzeń do swobodnego wyrażania siebie.</p>
+      <p>Tworzeniu towarzyszy spokojna rozmowa i&nbsp;przyjemna atmosfera — to okazja do aktywnego spędzenia czasu, rozwijania kreatywności, pobudzania zmysłów i&nbsp;czerpania radości z&nbsp;samego procesu tworzenia.</p>
+      <div class="cta-line">Poczuj · Dotknij · Stwórz</div>
+    </div>
+    <div class="split-media">
+      <img src="img/zmysl_dloniach.jpg" alt="Zmysł w dłoniach — tworzenie">
+    </div>
+  </div>
+</section>
+
+<!-- RYTUAŁ DŁONI -->
+<section id="rytual" class="split" style="background:var(--white);">
+  <div class="container split">
+    <div class="split-text">
+      <div class="section-eyebrow">Doświadczenie 05</div>
+      <h2>Rytuał dłoni</h2>
+      <p>Spokojne, indywidualnie dopasowane spotkanie poświęcone dłoniom i&nbsp;zmysłom.</p>
+      <p>Delikatny masaż dłoni, ciepłe kompresy, pachnące olejki, relaksująca muzyka, blask świec i&nbsp;subtelne aromaty tworzą przyjemną atmosferę sprzyjającą odprężeniu.</p>
+      <p>Ciepło, dotyk i&nbsp;różnorodne aromaty tworzą delikatne doświadczenia sensoryczne, które angażują zmysł dotyku i&nbsp;węchu, wspierają wyciszenie oraz pozwalają skupić uwagę na własnych odczuciach.</p>
+      <div class="cta-line">Relaks · Dotyk · Chwila wyciszenia</div>
+    </div>
+    <div class="split-media">
+      <img src="img/rytual.jpg" alt="Rytuał dłoni — masaż i relaks">
+    </div>
+  </div>
+</section>
+
+<!-- SPRAWNE DŁONIE -->
+<section id="sprawne-dlonie" class="split flip" style="background:var(--cream);">
+  <div class="container split">
+    <div class="split-text">
+      <div class="section-eyebrow">Doświadczenie 06</div>
+      <h2>Sprawne dłonie</h2>
+      <p>Indywidualne spotkanie skupione na codziennych czynnościach, pracy dłoni i&nbsp;samodzielności. Zamiast typowej zabawy proponujemy proste aktywności, dopasowane do możliwości i&nbsp;zainteresowań danej osoby.</p>
+      <p>Rysowanie szlaczków, kolorowanie, nawlekanie, przekładanie drobnych elementów, układanie, lepienie, zapinanie guzików czy ćwiczenie chwytu — wszystko może stać się naturalną częścią wspólnie spędzonego czasu.</p>
+      <p>Aktywności dobieramy tak, aby angażować dłonie, palce, koordynację i&nbsp;koncentrację, a&nbsp;jednocześnie pozostawać przyjemne i&nbsp;nieskomplikowane — we własnym tempie, z&nbsp;uwzględnieniem możliwości uczestnika.</p>
+      <div class="cta-line">Dotknij · Ćwicz · Odkrywaj samodzielność</div>
+    </div>
+    <div class="split-media">
+      <img src="img/sprawne_dlonie.jpg" alt="Sprawne dłonie — ćwiczenia">
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA DLA GRUP -->
+<section id="grupy" style="background:var(--white);">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Oferta dla grup</div>
+      <h2>Kameralne spotkania, osobisty charakter.</h2>
+      <p>Nasze spotkania odbywają się w&nbsp;kameralnych grupach, dzięki czemu każde z&nbsp;nich ma spokojny, bardziej osobisty charakter.</p>
+    </div>
+    <div class="two-col">
+      <div class="info-item">
+        <h3>Pełna oprawa</h3>
+        <p>Dbamy o&nbsp;odpowiednią oprawę całego doświadczenia — od przygotowania przestrzeni i&nbsp;materiałów, przez muzykę, światło i&nbsp;zapach, aż po sam przebieg spotkania. Naturalne materiały, kwiaty, świece, subtelne aromaty i&nbsp;starannie przygotowany stół sprawiają, że już od pierwszych chwil czuć, że to coś więcej niż zwykłe zajęcia.</p>
+      </div>
+      <div class="info-item">
+        <h3>Temat i charakter</h3>
+        <p>Każde spotkanie ma swój temat i&nbsp;charakter. Może być spokojne i&nbsp;wyciszające, pełne kreatywnego tworzenia bądź skoncentrowane na zapachach, smakach, muzyce czy kontakcie z&nbsp;naturą. Program przygotowujemy tak, aby grupa mogła nie tylko uczestniczyć, ale przede wszystkim spędzić ze sobą czas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA DLA DZIECI -->
+<section id="dzieci" style="background:var(--cream);">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Oferta dla dzieci</div>
+      <h2>Ogród Małego Odkrywcy</h2>
+      <p>Dla rodziców, którzy potrzebują chwili dla siebie, ale chcą, aby ich dziecko spędziło ten czas aktywnie i&nbsp;wartościowo — pełne odkrywania i&nbsp;zabawy, dostosowane do wieku dziecka.</p>
+    </div>
+    <div class="offer-grid">
+      <a class="card" href="#odkrywca">
+        <div class="card-img"><img src="img/odkrywca.jpg" alt="Ogród Małego Odkrywcy"></div>
+        <div class="card-txt">
+          <h3>Ogród Małego Odkrywcy</h3>
+          <div class="card-chips"><span class="mini">zapachy</span><span class="mini">natura</span></div>
+        </div>
+      </a>
+      <a class="card" href="#laboratorium">
+        <div class="card-img"><img src="img/laboratorium.jpg" alt="Małe Laboratorium Zmysłów"></div>
+        <div class="card-txt">
+          <h3>Małe Laboratorium Zmysłów</h3>
+          <div class="card-chips"><span class="mini">eksperymenty</span></div>
+        </div>
+      </a>
+      <a class="card" href="#kolory">
+        <div class="card-img"><img src="img/kolory.jpg" alt="Kolory i Emocje"></div>
+        <div class="card-txt">
+          <h3>Kolory i Emocje</h3>
+          <div class="card-chips"><span class="mini">malowanie</span><span class="mini">ekspresja</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- OGRÓD MAŁEGO ODKRYWCY -->
+<section id="odkrywca" class="split" style="background:var(--white);">
+  <div class="container split">
+    <div class="split-text">
+      <div class="section-eyebrow">Dla dzieci · 01</div>
+      <h2>Ogród Małego Odkrywcy</h2>
+      <p>Podczas spotkania dziecko poznaje świat zapachów, faktur, kolorów i&nbsp;kształtów. Wśród ziół, kwiatów, liści i&nbsp;naturalnych materiałów odkrywa różnorodne elementy, dotyka ich, porównuje i&nbsp;nazywa swoje skojarzenia.</p>
+      <p>Dziecko tworzy własną kompozycję z&nbsp;wybranych roślin i&nbsp;dodatków, ucząc się poprzez swobodne eksperymentowanie. Każdy element może stać się początkiem rozmowy, opowieści lub małego odkrycia.</p>
+      <p>Różnorodne faktury i&nbsp;zapachy rozwijają ciekawość, koncentrację i&nbsp;wyobraźnię, a&nbsp;samo tworzenie daje przestrzeń do samodzielnego podejmowania decyzji.</p>
+      <div class="cta-line">Dotknij · Odkryj · Stwórz</div>
+    </div>
+    <div class="split-media">
+      <img src="img/odkrywca.jpg" alt="Ogród Małego Odkrywcy">
+    </div>
+  </div>
+</section>
+
+<!-- MAŁE LABORATORIUM ZMYSŁÓW -->
+<section id="laboratorium" class="split flip" style="background:var(--cream);">
+  <div class="container split">
+    <div class="split-text">
+      <div class="section-eyebrow">Dla dzieci · 02</div>
+      <h2>Małe Laboratorium Zmysłów</h2>
+      <p>Zapraszamy do świata małych eksperymentów, w&nbsp;którym dziecko może dotykać, przelewać, przesypywać, mieszać i&nbsp;obserwować.</p>
+      <p>Wykorzystujemy bezpieczne materiały o&nbsp;różnorodnych strukturach — piasek, ryż, kasze, wodę, naturalne elementy czy masy plastyczne. Dziecko samodzielnie sprawdza, jak zachowują się poszczególne materiały i&nbsp;co można z&nbsp;nich stworzyć.</p>
+      <p>Nie ma jednej właściwej drogi — najważniejsze jest samodzielne odkrywanie i&nbsp;możliwość eksperymentowania we własnym tempie.</p>
+      <div class="cta-line">Eksperymentuj · Poznawaj · Odkrywaj</div>
+    </div>
+    <div class="split-media">
+      <img src="img/laboratorium.jpg" alt="Małe Laboratorium Zmysłów">
+    </div>
+  </div>
+</section>
+
+<!-- KOLORY I EMOCJE -->
+<section id="kolory" class="split" style="background:var(--white);">
+  <div class="container split">
+    <div class="split-text">
+      <div class="section-eyebrow">Dla dzieci · 03</div>
+      <h2>Kolory i Emocje</h2>
+      <p>Spotkanie, podczas którego kolory stają się sposobem na twórcze wyrażanie siebie. Dziecko poznaje różne techniki malowania — pędzlami, gąbkami, dłońmi czy przedmiotami o&nbsp;nietypowych kształtach.</p>
+      <p>Może mieszać kolory, tworzyć własne wzory i&nbsp;swobodnie eksperymentować z&nbsp;materiałami. Rozmowie o&nbsp;kolorach towarzyszą pytania o&nbsp;to, z&nbsp;czym kojarzy się dany kolor, jakie przywołuje obrazy i&nbsp;jakie może wywoływać odczucia.</p>
+      <p>To doświadczenie łączy kontakt z&nbsp;fakturą, kolorem i&nbsp;ruchem z&nbsp;kreatywną zabawą oraz swobodnym wyrażaniem własnych pomysłów.</p>
+      <div class="cta-line">Poczuj · Namaluj · Wyraź siebie</div>
+    </div>
+    <div class="split-media">
+      <img src="img/kolory.jpg" alt="Kolory i Emocje">
+    </div>
+  </div>
+</section>
+
+<!-- DLA KOGO -->
+<section id="dla-kogo" style="background:var(--cream);">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Dla kogo są nasze doświadczenia</div>
+      <h2>Nie ograniczamy się do jednej grupy wiekowej.</h2>
+      <p>Każde doświadczenie możemy dopasować do osoby, jej potrzeb, zainteresowań i&nbsp;możliwości.</p>
+    </div>
+    <div class="audience">
+      <div class="aud">
+        <div class="num">01</div>
+        <h3>Dla osób starszych</h3>
+        <p>Dla tych, którzy chcą pozostać aktywni, rozwijać zainteresowania, pobudzać zmysły, ćwiczyć pamięć i&nbsp;sprawność dłoni, a&nbsp;przede wszystkim mieć przestrzeń na rozmowę i&nbsp;kontakt z&nbsp;drugim człowiekiem. Ciekawa alternatywa dla tradycyjnej opieki — przychodzimy z&nbsp;pomysłem na konkretną aktywność: wspólne tworzenie, zapachy i&nbsp;smaki, muzyka, wspomnienia. To także propozycja dla osób samotnych, które chciałyby wypełnić czas czymś przyjemnym i&nbsp;angażującym.</p>
+      </div>
+      <div class="aud">
+        <div class="num">02</div>
+        <h3>Dla grup</h3>
+        <p>Dla osób, które chcą spotkać się, odprężyć i&nbsp;zrobić coś razem. Organizujemy kameralne spotkania, podczas których można poznać nowych ludzi, rozwijać zainteresowania i&nbsp;spędzić czas w&nbsp;przyjemnej atmosferze. Możemy również przygotować indywidualny scenariusz — od kreatywnych doświadczeń po wieczory pełne smaków, zapachów, muzyki i&nbsp;wspomnień.</p>
+      </div>
+      <div class="aud">
+        <div class="num">03</div>
+        <h3>Na wyjątkowe okazje</h3>
+        <p>Nie każde spotkanie musi być częścią regularnej oferty. Stworzymy spersonalizowane doświadczenie z&nbsp;okazji urodzin, imienin, rocznicy czy wspólnego spotkania przyjaciółek. Dobieramy temat, aktywności, muzykę, zapachy i&nbsp;całą oprawę do okazji i&nbsp;osób, które będą w&nbsp;niej uczestniczyć.</p>
+      </div>
+      <div class="aud">
+        <div class="num">04</div>
+        <h3>Dla dzieci</h3>
+        <p>Dla rodziców, którzy potrzebują chwili dla siebie, ale chcą, aby dziecko spędziło ten czas aktywnie i&nbsp;wartościowo. Zamiast tradycyjnej opieki proponujemy spotkanie pełne odkrywania i&nbsp;zabawy — dostosowane do wieku. Przez zabawy sensoryczne, tworzenie, rozmowę, muzykę i&nbsp;poznawanie świata rozwijamy ciekawość, kreatywność, samodzielność oraz umiejętność nazywania emocji.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENNIK -->
+<section id="cennik" style="background:var(--white);">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow">Cennik</div>
+      <h2>Indywidualne doświadczenia</h2>
+    </div>
+    <div class="price-wrap">
+      <div class="price-col">
+        <h3>Doświadczenia indywidualne</h3>
+        <div class="price-item"><div class="what"><b>Indywidualne doświadczenie</b><br>75 min</div><div class="cost">od 140&nbsp;zł</div></div>
+        <div class="price-item"><div class="what"><b>Indywidualne doświadczenie dla dziecka</b><br>75 min</div><div class="cost">129&nbsp;zł</div></div>
+        <div class="price-item"><div class="what"><b>Rodzeństwo / 2 dzieci</b><br>75 min</div><div class="cost">99&nbsp;zł / dziecko</div></div>
+        <p class="price-note" style="margin-top:1rem;">+ dojazd w&nbsp;zależności od odległości:<br>
+          do 10&nbsp;km — w&nbsp;cenie &nbsp;·&nbsp; 10–20&nbsp;km — +20&nbsp;zł &nbsp;·&nbsp; 20–30&nbsp;km — +40&nbsp;zł</p>
+        <div style="height:2rem"></div>
+        <h3>Doświadczenia grupowe</h3>
+        <div class="price-item"><div class="what"><b>Gotowe doświadczenia</b><br>wg ustalonego programu i&nbsp;tematyki</div><div class="cost">75&nbsp;zł / os</div></div>
+        <p class="price-note">75 min</p>
+        <div class="price-item"><div class="what"><b>Doświadczenie szyte na miarę</b><br>dobieramy temat, materiały i&nbsp;oprawę</div><div class="cost">150&nbsp;zł / os</div></div>
+        <p class="price-note">75 min</p>
+      </div>
+      <div class="price-col">
+        <h3>Pakiety</h3>
+        <div class="package">
+          <div class="p-name">„Czas dla siebie"</div>
+          <div class="p-desc">4 × 75 min indywidualnie</div>
+          <div class="p-price">549&nbsp;zł <s>zamiast 596&nbsp;zł</s></div>
+        </div>
+        <div style="height:1rem"></div>
+        <div class="package">
+          <div class="p-name">„Czas dla Was"</div>
+          <div class="p-desc">4 × 75 min dla 2 osób</div>
+          <div class="p-price">699&nbsp;zł <s>zamiast 792&nbsp;zł</s></div>
+        </div>
+        <div style="height:1rem"></div>
+        <div class="package">
+          <div class="p-name">Pakiet dziecięcy</div>
+          <div class="p-desc">4 × 75 min</div>
+          <div class="p-price">449&nbsp;zł <s>zamiast 516&nbsp;zł</s></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="f-brand serif">Sensoria</div>
+    <div class="f-tag serif">Zajęcia aktywizujące · chwile dla zmysłów</div>
+    <nav class="f-nav">
+      <a href="#idea">Nasza idea</a>
+      <a href="#wyrroznia">Co nas wyróżnia</a>
+      <a href="#oferta">Oferta</a>
+      <a href="#dzieci">Dla dzieci</a>
+      <a href="#grupy">Dla grup</a>
+      <a href="#cennik">Cennik</a>
+    </nav>
+    <div class="f-copy">© 2026 Sensoria · Wszystkie prawa zastrzeżone</div>
+  </div>
+</footer>
+
+</body>
+</html>
