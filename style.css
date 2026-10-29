@@ -197,7 +197,7 @@ body.page-cover .menu-btn[aria-expanded="true"] span{background:var(--ink);}
   text-align:center;
   overflow:hidden;
 }
-.cover__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center bottom;opacity:.8;}
+.cover__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 65%;opacity:.8;}
 .cover__inner{position:relative;z-index:2;padding:2rem;}
 .cover__brand{
   font-family:'Lustria',Georgia,serif;
