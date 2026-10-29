@@ -3,12 +3,14 @@
    Fonty i tła pochodzą z oryginału.
    ============================================================ */
 
-@font-face{font-family:'Sensoria Display';src:url('fonts/8dcc63e6bd4f6d41561f68dbc75529a1.woff') format('woff');font-weight:400;font-display:swap;}
-@font-face{font-family:'Sensoria Display';src:url('fonts/238919b47920553d7b287ec007d67e76.woff') format('woff');font-weight:700;font-display:swap;}
-@font-face{font-family:'Sensoria Text';src:url('fonts/8595ff9b0e9a6c04ad0e6bc94acaa14d.woff') format('woff');font-weight:400;font-display:swap;}
-@font-face{font-family:'Sensoria Text';src:url('fonts/dc693a24d3d1633fefd352bede0aebc4.woff') format('woff');font-weight:600;font-display:swap;}
-@font-face{font-family:'Sensoria Small';src:url('fonts/75c5329257f26c1588d2603ce9cc8585.woff') format('woff');font-weight:400;font-display:swap;}
-@font-face{font-family:'Sensoria Wordmark';src:url('fonts/b001370694aab196fc1bd970270402bc.woff') format('woff');font-weight:400;font-display:swap;}
+@font-face{
+  font-family:'Lustria';
+  src:url('fonts/lustria-pl.woff2') format('woff2');
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+  unicode-range:U+0000-024F,U+2000-206F,U+20AC,U+2122,U+2190-2193,U+2212,U+FEFF,U+FFFD;
+}
 
 :root{
   --paper:#e9ded6;
@@ -18,10 +20,10 @@
   --muted:#7c705f;
   --muted-2:#8a816e;
   --dash:rgba(75,50,33,.42);
-  --serif:'Sensoria Text', Georgia, 'Times New Roman', serif;
-  --display:'Sensoria Display', Georgia, serif;
-  --small:'Sensoria Small', Georgia, serif;
-  --nav:'Sensoria Display', Georgia, serif;
+  --serif:'Lustria', Georgia, 'Times New Roman', serif;
+  --display:'Lustria', Georgia, serif;
+  --small:'Lustria', Georgia, serif;
+  --nav:'Lustria', Georgia, serif;
   --pad:clamp(2rem, 4.2vw, 4.6rem);
 }
 
@@ -174,7 +176,7 @@ body.page-cover .menu-btn[aria-expanded="true"] span{background:var(--ink);}
 .cover__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 24%;}
 .cover__inner{position:relative;z-index:2;padding:2rem;}
 .cover__brand{
-  font-family:'Sensoria Wordmark',Georgia,serif;
+  font-family:'Lustria',Georgia,serif;
   font-size:clamp(1.5rem,1.5vw + .95rem,2.35rem);
   letter-spacing:.42em;
   text-transform:uppercase;
@@ -271,6 +273,47 @@ body.page-cover .menu-btn[aria-expanded="true"] span{background:var(--ink);}
   text-decoration:underline;
   text-underline-offset:5px;
   text-decoration-thickness:1px;
+}
+
+
+/* ---------------- POLITYKA PRYWATNOŚCI ---------------- */
+.legal{
+  min-height:100svh;
+  background:var(--paper-warm);
+  padding:clamp(3.6rem,7vw,6rem) clamp(1.4rem,6vw,2.6rem) clamp(4rem,7vw,6rem);
+}
+.legal__inner{
+  max-width:74ch;margin-inline:auto;
+}
+.legal__eyebrow{
+  font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--accent);opacity:.85;margin:0 0 .9rem;
+}
+.legal__title{
+  font-size:clamp(1.7rem,2.4vw + .9rem,2.6rem);
+  line-height:1.15;letter-spacing:.03em;margin:0 0 1.2rem;font-weight:400;
+}
+.legal__lead{
+  font-size:1.02em;color:rgba(0,0,0,.82);margin-bottom:2rem;
+  padding-bottom:1.6rem;border-bottom:1px solid var(--dash);
+}
+.legal h2{
+  font-size:clamp(1rem,.7vw + .82rem,1.18rem);
+  letter-spacing:.04em;margin:2.1em 0 .5em;font-weight:400;color:var(--accent);
+}
+.legal p{margin:0 0 .9em;text-align:justify;hyphens:auto;}
+.legal ul{margin:0 0 1.1em;padding-left:1.3em;}
+.legal li{margin-bottom:.42em;}
+.legal a{color:var(--accent);text-underline-offset:3px;}
+.legal__meta{
+  margin-top:2.4rem;font-size:.82em;letter-spacing:.06em;
+  color:rgba(0,0,0,.6);border-top:1px solid var(--dash);padding-top:1rem;
+}
+.legal .page__nav{
+  position:static;margin-top:2rem;
+}
+@media (max-width:640px){
+  .legal p{text-align:left;}
 }
 
 /* ---------------- PODPIS / LINK ---------------- */

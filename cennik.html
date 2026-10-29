@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cennik — Sensoria</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="">
+<div class="scrim" id="scrim" data-open="false"></div>
+<button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="menu">
+  <span></span><span></span><span></span>
+</button>
+<nav class="menu" id="menu" data-open="false" aria-label="Menu główne">
+  <ul><li><a href="nasza-idea.html">Nasza idea</a></li><li><a href="oferta.html">Oferta indywidualna</a></li><li><a href="oferta-dla-grup.html">Oferta dla grup</a></li><li><a href="oferta-dla-dzieci.html">Oferta dla dzieci</a></li><li><a href="cennik.html" aria-current="page">Cennik</a></li><li><a href="dla-kogo.html">Dla kogo są nasze doświadczenia?</a></li></ul>
+  <hr class="menu__sep">
+  <ul class="menu__small">
+    <li><a href="index.html">Strona główna</a></li>
+  </ul>
+  <hr class="menu__sep">
+  <ul class="menu__small">
+    <li><a href="#">Regulamin i wsparcie</a></li>
+    <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
+  </ul>
+</nav>
+<main class="page page--cennik">
+  <div class="page__text" style="background-image:url('img/tlo-papier.jpg');background-size:cover;background-position:center;">
+    <div class="page__body page__body--cennik">
+      <div class="cennik__col">
+        <h2 class="cennik__h">Indywidualne doświadczenie</h2>
+        <p class="cennik__price">75min od &ndash; 140 zł</p>
+        <p class="cennik__note">+ dojazd w zależności od odległości:<br>
+          Do 10 km &mdash; w cenie<br>10&ndash;20 km &mdash; +20 zł<br>20&ndash;30 km &mdash; +40 zł</p>
+
+        <h2 class="cennik__h">Indywidualne doświadczenie dla dziecka</h2>
+        <p class="cennik__price">75min &mdash; 129 zł</p>
+
+        <h2 class="cennik__h">Rodzeństwo / 2 dzieci</h2>
+        <p class="cennik__price">75 min &mdash; 99 zł / dziecko</p>
+
+      </div>
+      <div class="cennik__col">
+        <h2 class="cennik__h">Pakiety</h2>
+        <p class="cennik__line">&bdquo;CZAS DLA SIEBIE&rdquo;<br>4 &times; 75 min indywidualnie<br><b>549 zł</b> zamiast 596 zł</p>
+        <p class="cennik__line">&bdquo;Czas dla was&rdquo;<br>4 &times; 75 min dla 2 osób<br><b>699 zł</b> zamiast 792 zł</p>
+        <p class="cennik__line">PAKIET DZIECIĘCY<br>4 &times; 75 min<br><b>449 zł</b> zamiast 516 zł</p>
+
+        <h2 class="cennik__h">Doświadczenia grupowe</h2>
+        <p class="cennik__line">Gotowe doświadczenia dostępne w naszej ofercie, przygotowane według określonego programu i tematyki.</p>
+        <p class="cennik__price">75 zł / osoba &ndash; 75 min</p>
+        <p class="cennik__line">To Wy decydujecie, czego chcecie doświadczyć, jaka tematyka Was interesuje i jaki charakter ma mieć spotkanie. Na tej podstawie tworzymy całe doświadczenie &mdash; od pomysłu, przez dobór materiałów i aktywności, aż po wyjątkową oprawę.</p>
+        <p class="cennik__price">150 zł / osoba &ndash; 75 min</p>
+      </div>
+    </div>
+    <div class="page__nav"><a href="index.html">&lt;WRÓĆ</a></div>
+  </div>
+  <div class="page__media"><img src="img/cienie.jpg" alt="Cennik"></div>
+</main>
+<script>
+(function(){
+  var btn=document.getElementById('menuBtn'),menu=document.getElementById('menu'),
+      close=document.getElementById('menuClose'),scrim=document.getElementById('scrim');
+  function set(open){
+    menu.setAttribute('data-open',open);scrim.setAttribute('data-open',open);
+    btn.setAttribute('aria-expanded',open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  btn.addEventListener('click',function(){set(menu.getAttribute('data-open')!=='true');});
+  scrim.addEventListener('click',function(){set(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});
+})();
+</script>
+</body>
+</html>
