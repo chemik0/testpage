@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kolory i Emocje — Sensoria</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="">
+<div class="scrim" id="scrim" data-open="false"></div>
+<button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="menu">
+  <span></span><span></span><span></span>
+</button>
+<nav class="menu" id="menu" data-open="false" aria-label="Menu główne">
+  <ul><li><a href="nasza-idea.html">Nasza idea</a></li><li><a href="oferta.html">Oferta indywidualna</a></li><li><a href="oferta-dla-grup.html">Oferta dla grup</a></li><li><a href="oferta-dla-dzieci.html" aria-current="page">Oferta dla dzieci</a></li><li><a href="cennik.html">Cennik</a></li><li><a href="dla-kogo.html">Dla kogo są nasze doświadczenia?</a></li></ul>
+  <hr class="menu__sep">
+  <ul class="menu__small">
+    <li><a href="index.html">Strona główna</a></li>
+  </ul>
+  <hr class="menu__sep">
+  <ul class="menu__small">
+    <li><a href="#">Regulamin i wsparcie</a></li>
+    <li><a href="#">Polityka prywatności</a></li>
+  </ul>
+</nav>
+<main class="page">
+  <div class="page__text" style="background-image:url('img/tlo-papier.jpg');background-size:cover;background-position:center;">
+    <div class="page__body">
+      <p>Spotkanie, podczas którego kolory stają się sposobem na twórcze <b>wyrażanie</b> siebie.</p><p>Dziecko poznaje różne <b>techniki malowania</b> – pędzlami, gąbkami, dłońmi czy przedmiotami o nietypowych kształtach.</p><p>Może <b>mieszać</b> kolory, tworzyć własne wzory i swobodnie eksperymentować z materiałami.</p><p>Rozmowie o kolorach towarzyszą pytania o to, z czym kojarzy się dany kolor, jakie przywołuje obrazy i jakie może wywoływać <b>odczucia</b>.</p><p>To <b>doświadczenie</b> łączy kontakt z fakturą, kolorem i ruchem z <b>kreatywną</b> zabawą oraz <b>swobodnym</b> wyrażaniem własnych pomysłów.</p>
+      <p class="page__motto">POCZUJ • NAMALUJ • WYRAŹ SIEBIE</p>
+    </div>
+    <div class="page__nav"><a href="oferta-dla-dzieci.html"><WRÓĆ</a></div>
+  </div>
+  <div class="page__media">
+    <img src="img/karta-kolory.jpg" alt="Kolory i Emocje">
+  </div>
+</main>
+<script>
+(function(){
+  var btn=document.getElementById('menuBtn'),menu=document.getElementById('menu'),
+      close=document.getElementById('menuClose'),scrim=document.getElementById('scrim');
+  function set(open){
+    menu.setAttribute('data-open',open);scrim.setAttribute('data-open',open);
+    btn.setAttribute('aria-expanded',open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  btn.addEventListener('click',function(){set(menu.getAttribute('data-open')!=='true');});
+  scrim.addEventListener('click',function(){set(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Małe Laboratorium Zmysłów — Sensoria</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="">
+<div class="scrim" id="scrim" data-open="false"></div>
+<button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="menu">
+  <span></span><span></span><span></span>
+</button>
+<nav class="menu" id="menu" data-open="false" aria-label="Menu główne">
+  <ul><li><a href="nasza-idea.html">Nasza idea</a></li><li><a href="oferta.html">Oferta indywidualna</a></li><li><a href="oferta-dla-grup.html">Oferta dla grup</a></li><li><a href="oferta-dla-dzieci.html" aria-current="page">Oferta dla dzieci</a></li><li><a href="cennik.html">Cennik</a></li><li><a href="dla-kogo.html">Dla kogo są nasze doświadczenia?</a></li></ul>
+  <hr class="menu__sep">
+  <ul class="menu__small">
+    <li><a href="index.html">Strona główna</a></li>
+  </ul>
+  <hr class="menu__sep">
+  <ul class="menu__small">
+    <li><a href="#">Regulamin i wsparcie</a></li>
+    <li><a href="#">Polityka prywatności</a></li>
+  </ul>
+</nav>
+<main class="page page--reverse">
+  <div class="page__text" style="background-image:url('img/tlo-papier.jpg');background-size:cover;background-position:center;">
+    <div class="page__body">
+      <p>Zapraszamy do świata małych eksperymentów, w którym dziecko może <b>dotykać</b>, przelewać, przesypywać, mieszać i obserwować.</p><p>Podczas spotkania wykorzystujemy bezpieczne materiały o różnorodnych <b>strukturach</b> – <b>piasek</b>, ryż, kasze, <b>wodę</b>, naturalne elementy czy masy plastyczne.</p><p>Dziecko samodzielnie sprawdza, jak zachowują się poszczególne materiały i co można z nich stworzyć.</p><p>Nie ma jednej właściwej drogi – najważniejsze jest <b>samodzielne odkrywanie</b> i możliwość <b>eksperymentowania</b> we własnym tempie.</p><p>Każde doświadczenie <b>angażuje</b> dłonie, wzrok i uwagę, zachęcając dziecko do <b>obserwowania</b>, porównywania i wyciągania własnych wniosków.</p>
+      <p class="page__motto">EKSPERYMENTUJ • POZNAWAJ • ODKRYWAJ</p>
+    </div>
+    <div class="page__nav"><a href="oferta-dla-dzieci.html"><WRÓĆ</a></div>
+  </div>
+  <div class="page__media">
+    <img src="img/laboratorium.jpg" alt="Małe Laboratorium Zmysłów">
+  </div>
+</main>
+<script>
+(function(){
+  var btn=document.getElementById('menuBtn'),menu=document.getElementById('menu'),
+      close=document.getElementById('menuClose'),scrim=document.getElementById('scrim');
+  function set(open){
+    menu.setAttribute('data-open',open);scrim.setAttribute('data-open',open);
+    btn.setAttribute('aria-expanded',open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  btn.addEventListener('click',function(){set(menu.getAttribute('data-open')!=='true');});
+  scrim.addEventListener('click',function(){set(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+/* ============================================================
+   SENSORIA — wierna kopia strony Canva
+   Fonty i tła pochodzą z oryginału.
+   ============================================================ */
+
+@font-face{font-family:'Sensoria Display';src:url('fonts/8dcc63e6bd4f6d41561f68dbc75529a1.woff') format('woff');font-weight:400;font-display:swap;}
+@font-face{font-family:'Sensoria Display';src:url('fonts/238919b47920553d7b287ec007d67e76.woff') format('woff');font-weight:700;font-display:swap;}
+@font-face{font-family:'Sensoria Text';src:url('fonts/8595ff9b0e9a6c04ad0e6bc94acaa14d.woff') format('woff');font-weight:400;font-display:swap;}
+@font-face{font-family:'Sensoria Text';src:url('fonts/dc693a24d3d1633fefd352bede0aebc4.woff') format('woff');font-weight:600;font-display:swap;}
+@font-face{font-family:'Sensoria Small';src:url('fonts/75c5329257f26c1588d2603ce9cc8585.woff') format('woff');font-weight:400;font-display:swap;}
+@font-face{font-family:'Sensoria Wordmark';src:url('fonts/b001370694aab196fc1bd970270402bc.woff') format('woff');font-weight:400;font-display:swap;}
+
+:root{
+  --paper:#e9ded6;
+  --paper-warm:#efe6df;
+  --ink:#000;
+  --accent:#4b3221;
+  --muted:#7c705f;
+  --muted-2:#8a816e;
+  --dash:rgba(75,50,33,.42);
+  --serif:'Sensoria Text', Georgia, 'Times New Roman', serif;
+  --display:'Sensoria Display', Georgia, serif;
+  --small:'Sensoria Small', Georgia, serif;
+  --nav:'Sensoria Display', Georgia, serif;
+  --pad:clamp(2rem, 4.2vw, 4.6rem);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:clamp(1rem, .62vw + .82rem, 1.22rem);
+  line-height:1.62;
+  letter-spacing:.042em;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%;height:auto;}
+p{margin:0 0 .92em;}
+p:last-child{margin-bottom:0;}
+a{color:inherit;}
+strong,b{font-weight:600;}
+
+/* ---------------- STRONA (split) ---------------- */
+.page{
+  position:relative;
+  min-height:100svh;
+  display:grid;
+  grid-template-columns:44% 56%;
+  background:var(--paper);
+}
+.page--reverse .page__media{order:-1;}
+
+.page__text{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:clamp(3rem,5vw,4.6rem) var(--pad) clamp(4.6rem,7vw,6rem) calc(var(--pad) + 1.6rem);
+}
+/* pionowa linia przerywana przy lewym marginesie */
+.page__text::before{
+  content:"";
+  position:absolute;
+  left:var(--pad);
+  top:clamp(3rem,5vw,4.6rem);
+  bottom:clamp(4.6rem,7vw,6rem);
+  border-left:1px dashed var(--dash);
+}
+.page__body{max-width:56ch;}
+.page__body p{text-align:justify;hyphens:auto;}
+
+.page__media{position:relative;overflow:hidden;background:#cfc4b9;min-height:100svh;}
+.page__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+
+/* fraza końcowa sekcji */
+.page__motto{
+  margin-top:1.7em;
+  font-family:var(--display);
+  font-size:clamp(.86rem,.75vw + .62rem,1.06rem);
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--accent);
+  line-height:1.6;
+}
+
+/* ---------------- NAWIGACJA DOLNA ---------------- */
+.page__nav{
+  position:absolute;
+  left:calc(var(--pad) + 1.6rem);
+  right:var(--pad);
+  bottom:clamp(1.6rem,3vw,2.6rem);
+  display:flex;
+  flex-wrap:wrap;
+  gap:.4rem 1.6rem;
+  font-family:var(--nav);
+  font-size:clamp(.72rem,.35vw + .66rem,.9rem);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.page__nav a{
+  text-decoration:none;
+  padding:.25rem 0;
+  border-bottom:1px solid transparent;
+  transition:.2s;
+}
+.page__nav a:hover{border-bottom-color:currentColor;}
+
+/* ---------------- MENU ---------------- */
+.menu-btn{
+  position:fixed;top:clamp(.9rem,2vw,1.6rem);right:clamp(1rem,2.4vw,2.4rem);
+  z-index:120;
+  width:46px;height:46px;
+  background:none;border:0;cursor:pointer;padding:0;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;
+}
+body.page-cover .menu-btn span{background:#f3ece2;box-shadow:0 1px 6px rgba(0,0,0,.45);}
+body.page-cover .menu-btn[aria-expanded="true"] span{background:var(--ink);}
+.menu-btn{transition:opacity .2s;}
+.menu-btn span{
+  display:block;width:26px;height:1.5px;background:var(--ink);
+  transition:transform .3s ease, opacity .3s ease;
+}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
+
+.menu{
+  position:fixed;inset:0 0 0 auto;
+  width:min(46vw, 620px);
+  background:var(--paper);
+  z-index:110;
+  padding:clamp(3.4rem,7vh,5rem) clamp(1.8rem,3.4vw,3.4rem);
+  display:flex;flex-direction:column;justify-content:center;
+  transform:translateX(100%);
+  visibility:hidden;
+  transition:transform .42s cubic-bezier(.4,0,.2,1), visibility .42s;
+  box-shadow:-18px 0 60px rgba(60,42,30,.14);
+  overflow-y:auto;
+}
+.menu[data-open="true"]{transform:translateX(0);visibility:visible;}
+.menu ul{list-style:none;margin:0;padding:0;}
+.menu li{margin:0 0 .1rem;}
+.menu a{
+  display:block;
+  font-family:var(--display);
+  font-size:clamp(1.05rem,1.5vw + .5rem,1.72rem);
+  letter-spacing:.045em;
+  text-transform:uppercase;
+  text-decoration:none;
+  padding:.5rem 0;
+  border-bottom:1px solid transparent;
+  transition:.2s;
+}
+.menu a::before{content:">";margin-right:.55em;}
+.menu a:hover{color:var(--accent);}
+.menu__sep{border:0;border-top:1px solid var(--dash);margin:1rem 0;}
+.menu__small a{font-size:clamp(.8rem,.5vw + .65rem,1rem);}
+.scrim{
+  position:fixed;inset:0;background:rgba(40,28,20,.28);
+  z-index:105;opacity:0;visibility:hidden;transition:.35s;
+}
+.scrim[data-open="true"]{opacity:1;visibility:visible;}
+
+/* ---------------- OKŁADKA ---------------- */
+.cover{
+  position:relative;min-height:100svh;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;
+  overflow:hidden;
+}
+.cover__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 24%;}
+.cover__inner{position:relative;z-index:2;padding:2rem;}
+.cover__brand{
+  font-family:'Sensoria Wordmark',Georgia,serif;
+  font-size:clamp(1.5rem,1.5vw + .95rem,2.35rem);
+  letter-spacing:.42em;
+  text-transform:uppercase;
+  color:#b7ac97;
+  margin:0 0 clamp(.9rem,1.6vw,1.6rem);
+  padding-left:.42em;
+  text-shadow:0 2px 18px rgba(0,0,0,.35);
+}
+.cover__title{
+  font-family:var(--display);
+  font-weight:700;
+  font-size:clamp(2.1rem,4.2vw + .8rem,5rem);
+  line-height:.96;
+  letter-spacing:.045em;
+  text-transform:uppercase;
+  color:#a2977f;
+  margin:0;
+  text-shadow:0 3px 26px rgba(0,0,0,.42);
+}
+
+/* ---------------- SIATKA OFERTY ---------------- */
+.grid-page{
+  min-height:100svh;
+  padding:clamp(3rem,6vw,5.4rem) var(--pad) clamp(5rem,8vw,6.5rem);
+  background-color:var(--paper);
+  background-image:url('img/tlo-kratka.png');
+  background-size:clamp(360px,32vw,560px) auto;
+  background-repeat:repeat;
+  position:relative;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:clamp(1.1rem,2.4vw,2.6rem);
+  align-items:start;
+}
+.tile{display:block;text-decoration:none;color:inherit;}
+.tile__frame{
+  background:#fff;
+  padding:clamp(6px,.7vw,10px);
+  box-shadow:0 10px 30px rgba(70,50,35,.10);
+  transition:transform .35s ease, box-shadow .35s ease;
+}
+.tile:hover .tile__frame{transform:translateY(-6px);box-shadow:0 18px 40px rgba(70,50,35,.17);}
+.tile__img{aspect-ratio:497/646;overflow:hidden;}
+.tile__img img{width:100%;height:100%;object-fit:cover;}
+.tile__name{
+  margin:.9rem 0 0;
+  font-family:var(--display);
+  font-size:clamp(.82rem,.75vw + .58rem,1.05rem);
+  letter-spacing:.055em;
+  text-transform:uppercase;
+  line-height:1.35;
+  text-align:center;
+}
+.grid-page .page__nav{justify-content:space-between;}
+
+/* ---------------- CENNIK ---------------- */
+.page--cennik .page__text{align-items:stretch;padding-top:clamp(1.6rem,2.6vw,2.4rem);padding-bottom:clamp(3.2rem,4vw,3.8rem);}
+.page--cennik .page__text::before{top:clamp(1.6rem,2.6vw,2.4rem);bottom:clamp(3.2rem,4vw,3.8rem);}
+.page--cennik{font-size:clamp(.86rem,.35vw + .68rem,.96rem);line-height:1.5;}
+.page__body--cennik{max-width:none;margin:0;display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(1.6rem,3vw,3.2rem);align-items:start;}
+.cennik__col{min-width:0;}
+.cennik__h{
+  font-family:var(--display);
+  font-size:clamp(.84rem,.55vw + .62rem,.98rem);
+  letter-spacing:.05em;
+  margin:.95em 0 .15em;
+  font-weight:400;
+}
+.cennik__h:first-child{margin-top:0;}
+.cennik__price{
+  font-size:.98em;
+  margin:0 0 .35em;
+}
+.cennik__note{
+  font-size:.78em;
+  line-height:1.5;
+  color:rgba(0,0,0,.78);
+  margin:0 0 1.1em;
+}
+.cennik__line{margin:0 0 .62em;font-size:.85em;line-height:1.45;}
+.cennik__line b{color:var(--accent);}
+
+/* ---------------- DLA KOGO ---------------- */
+.dk__h{
+  font-family:var(--display);
+  font-size:clamp(.8rem,.45vw + .68rem,.95rem);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  margin:1.5em 0 .4em;
+  font-weight:400;
+  text-decoration:underline;
+  text-underline-offset:5px;
+  text-decoration-thickness:1px;
+}
+
+/* ---------------- PODPIS / LINK ---------------- */
+.wroć{font-family:var(--nav);}
+
+/* ---------------- RESPONSYWNOŚĆ ---------------- */
+@media (max-width:1000px){
+  .menu{width:min(78vw,520px);}
+  .page{grid-template-columns:1fr;min-height:auto;}
+  .page--reverse .page__media{order:0;}
+  .page__media{min-height:0;aspect-ratio:4/3;order:-1;}
+  .page__media img{position:static;height:100%;}
+  .page__text{padding:clamp(2.4rem,7vw,3.4rem) clamp(1.4rem,6vw,2.6rem) clamp(4.6rem,9vw,5.6rem) calc(clamp(1.4rem,6vw,2.6rem) + 1.2rem);}
+  .page__text::before{left:clamp(1.4rem,6vw,2.6rem);top:clamp(2.4rem,7vw,3.4rem);bottom:clamp(4.6rem,9vw,5.6rem);}
+  .page__nav{left:calc(clamp(1.4rem,6vw,2.6rem) + 1.2rem);right:clamp(1.4rem,6vw,2.6rem);bottom:1.8rem;}
+  .page__body p{text-align:left;}
+  .grid{grid-template-columns:1fr;gap:2rem;max-width:440px;margin-inline:auto;}
+  .page__body--cennik{grid-template-columns:1fr;gap:0;}
+  .page--cennik .page__text{padding-bottom:6.5rem;}
+  .page--cennik .page__text::before{bottom:6.5rem;}
+  .grid-page .page__nav{justify-content:space-between;}
+}
+@media (max-width:640px){
+  .menu{width:100%;}
+  .cover__brand{letter-spacing:.3em;}
+  .grid-page{padding-inline:1.3rem;}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important;}
+}

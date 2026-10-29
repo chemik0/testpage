@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oferta dla grup — Sensoria</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="">
+<div class="scrim" id="scrim" data-open="false"></div>
+<button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="menu">
+  <span></span><span></span><span></span>
+</button>
+<nav class="menu" id="menu" data-open="false" aria-label="Menu główne">
+  <ul><li><a href="nasza-idea.html">Nasza idea</a></li><li><a href="oferta.html">Oferta indywidualna</a></li><li><a href="oferta-dla-grup.html" aria-current="page">Oferta dla grup</a></li><li><a href="oferta-dla-dzieci.html">Oferta dla dzieci</a></li><li><a href="cennik.html">Cennik</a></li><li><a href="dla-kogo.html">Dla kogo są nasze doświadczenia?</a></li></ul>
+  <hr class="menu__sep">
+  <ul class="menu__small">
+    <li><a href="index.html">Strona główna</a></li>
+  </ul>
+  <hr class="menu__sep">
+  <ul class="menu__small">
+    <li><a href="#">Regulamin i wsparcie</a></li>
+    <li><a href="#">Polityka prywatności</a></li>
+  </ul>
+</nav>
+<main class="page">
+  <div class="page__text" style="background-image:url('img/tlo-papier.jpg');background-size:cover;background-position:center;">
+    <div class="page__body">
+      <p>Nasze spotkania odbywają się w <b>kameralnych grupach</b>, dzięki czemu każde z nich ma spokojny, bardziej <b>osobisty charakter</b>.</p><p>Dbamy o odpowiednią <b>oprawę</b> całego doświadczenia - od przygotowania przestrzeni i materiałów przez muzykę, światło i zapach, aż po sam przebieg spotkania.</p><p>Tworzymy atmosferę która jest <b>elegancka</b>, przytulna i pełna pięknych detali. Naturalne materiały, kwiaty, świece, subtelne aromaty, starannie przygotowany stół i różnorodne <b>sensoryczne</b> elementy sprawiają, że już od pierwszych chwil można poczuć że jest to coś więcej niż zwykłe zajęcia.</p><p>Każde spotkanie ma swój temat i <b>charakter</b>. Może być spokojne i <b>wyciszające</b>, pełne kreatywnego <b>tworzenia</b> badź skoncentrowane na zapachach, smakach, muzyce czy kontakcie z <b>naturą</b>.</p><p>Program przygotowywujemy tak, aby grupa mogła nie tylko uczestniczyć w aktywnościach, ale przede wszystkim spędzić ze sobą czas.</p>
+      
+    </div>
+    <div class="page__nav"><a href="index.html"><WRÓĆ</a></div>
+  </div>
+  <div class="page__media">
+    <img src="img/grupy.jpg" alt="Oferta dla grup">
+  </div>
+</main>
+<script>
+(function(){
+  var btn=document.getElementById('menuBtn'),menu=document.getElementById('menu'),
+      close=document.getElementById('menuClose'),scrim=document.getElementById('scrim');
+  function set(open){
+    menu.setAttribute('data-open',open);scrim.setAttribute('data-open',open);
+    btn.setAttribute('aria-expanded',open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  btn.addEventListener('click',function(){set(menu.getAttribute('data-open')!=='true');});
+  scrim.addEventListener('click',function(){set(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});
+})();
+</script>
+</body>
+</html>

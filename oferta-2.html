@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oferta indywidualna — Sensoria</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="">
+<div class="scrim" id="scrim" data-open="false"></div>
+<button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="menu">
+  <span></span><span></span><span></span>
+</button>
+<nav class="menu" id="menu" data-open="false" aria-label="Menu główne">
+  <ul><li><a href="nasza-idea.html">Nasza idea</a></li><li><a href="oferta.html" aria-current="page">Oferta indywidualna</a></li><li><a href="oferta-dla-grup.html">Oferta dla grup</a></li><li><a href="oferta-dla-dzieci.html">Oferta dla dzieci</a></li><li><a href="cennik.html">Cennik</a></li><li><a href="dla-kogo.html">Dla kogo są nasze doświadczenia?</a></li></ul>
+  <hr class="menu__sep">
+  <ul class="menu__small">
+    <li><a href="index.html">Strona główna</a></li>
+  </ul>
+  <hr class="menu__sep">
+  <ul class="menu__small">
+    <li><a href="#">Regulamin i wsparcie</a></li>
+    <li><a href="#">Polityka prywatności</a></li>
+  </ul>
+</nav>
+<main class="grid-page">
+  <div class="grid"><a class="tile" href="zmysl-w-dlonach.html">
+    <div class="tile__frame"><div class="tile__img"><img src="img/karta-zmysl.jpg" alt="ZMYSŁ W DŁONIACH"></div></div>
+    <p class="tile__name">ZMYSŁ W DŁONIACH</p>
+  </a><a class="tile" href="rytual-dloni.html">
+    <div class="tile__frame"><div class="tile__img"><img src="img/karta-rytual.jpg" alt="RYTUAŁ DŁONI"></div></div>
+    <p class="tile__name">RYTUAŁ DŁONI</p>
+  </a><a class="tile" href="sprawne-dlonie.html">
+    <div class="tile__frame"><div class="tile__img"><img src="img/karta-sprawne.jpg" alt="SPRAWNE DŁONIE"></div></div>
+    <p class="tile__name">SPRAWNE DŁONIE</p>
+  </a></div>
+  <div class="page__nav"><a href="index.html">STRONA GŁÓWNA</a><a href="oferta.html">WRÓĆ</a></div>
+</main>
+<script>
+(function(){
+  var btn=document.getElementById('menuBtn'),menu=document.getElementById('menu'),
+      close=document.getElementById('menuClose'),scrim=document.getElementById('scrim');
+  function set(open){
+    menu.setAttribute('data-open',open);scrim.setAttribute('data-open',open);
+    btn.setAttribute('aria-expanded',open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  btn.addEventListener('click',function(){set(menu.getAttribute('data-open')!=='true');});
+  scrim.addEventListener('click',function(){set(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});
+})();
+</script>
+</body>
+</html>
