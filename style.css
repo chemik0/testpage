@@ -74,8 +74,8 @@ strong,b{font-weight:600;}
 .page__body{max-width:56ch;}
 .page__body p{text-align:justify;hyphens:auto;}
 
-.page__media{position:relative;overflow:hidden;background:#cfc4b9;min-height:100svh;}
-.page__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.page__media{position:relative;overflow:hidden;background:var(--paper);min-height:100svh;}
+.page__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.8;}
 
 /* fraza końcowa sekcji */
 .page__motto{
@@ -109,6 +109,30 @@ strong,b{font-weight:600;}
   transition:.2s;
 }
 .page__nav a:hover{border-bottom-color:currentColor;}
+
+/* ---------------- POWRÓT ---------------- */
+.back{
+  position:fixed;
+  top:clamp(.9rem,2vw,1.6rem);
+  left:clamp(1rem,2.4vw,2.4rem);
+  z-index:120;
+  font-family:var(--nav);
+  font-size:clamp(.7rem,.32vw + .64rem,.86rem);
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:var(--ink);
+  padding:.5rem .85rem .5rem .7rem;
+  display:inline-flex;align-items:center;gap:.4em;
+  background:rgba(239,231,225,.86);
+  -webkit-backdrop-filter:blur(6px);
+  backdrop-filter:blur(6px);
+  border-radius:2px;
+  box-shadow:0 2px 10px rgba(60,42,30,.10);
+  transition:background .2s, box-shadow .2s;
+}
+.back:hover{background:rgba(239,231,225,.98);box-shadow:0 3px 14px rgba(60,42,30,.16);}
+.back::before{content:"\2039";font-size:1.35em;line-height:1;}
 
 /* ---------------- MENU ---------------- */
 .menu-btn{
@@ -173,7 +197,7 @@ body.page-cover .menu-btn[aria-expanded="true"] span{background:var(--ink);}
   text-align:center;
   overflow:hidden;
 }
-.cover__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 24%;}
+.cover__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center bottom;opacity:.8;}
 .cover__inner{position:relative;z-index:2;padding:2rem;}
 .cover__brand{
   font-family:'Lustria',Georgia,serif;
@@ -223,7 +247,7 @@ body.page-cover .menu-btn[aria-expanded="true"] span{background:var(--ink);}
 }
 .tile:hover .tile__frame{transform:translateY(-6px);box-shadow:0 18px 40px rgba(70,50,35,.17);}
 .tile__img{aspect-ratio:497/646;overflow:hidden;}
-.tile__img img{width:100%;height:100%;object-fit:cover;}
+.tile__img img{width:100%;height:100%;object-fit:cover;opacity:.8;}
 .tile__name{
   margin:.9rem 0 0;
   font-family:var(--display);
@@ -335,6 +359,9 @@ body.page-cover .menu-btn[aria-expanded="true"] span{background:var(--ink);}
   .page--cennik .page__text{padding-bottom:6.5rem;}
   .page--cennik .page__text::before{bottom:6.5rem;}
   .grid-page .page__nav{justify-content:space-between;}
+}
+@media (max-width:1000px){
+  .cover__img{object-position:center 30%;}
 }
 @media (max-width:640px){
   .menu{width:100%;}
