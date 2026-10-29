@@ -13,7 +13,7 @@
   <span></span><span></span><span></span>
 </button>
 <nav class="menu" id="menu" data-open="false" aria-label="Menu główne">
-  <ul><li><a href="nasza-idea.html">Nasza idea</a></li><li><a href="oferta.html">Oferta indywidualna</a></li><li><a href="oferta-dla-grup.html">Oferta dla grup</a></li><li><a href="oferta-dla-dzieci.html">Oferta dla dzieci</a></li><li><a href="cennik.html">Cennik</a></li><li><a href="dla-kogo.html" aria-current="page">Dla kogo są nasze doświadczenia?</a></li></ul>
+  <ul><li><a href="nasza-idea.html" class="">Nasza idea</a></li><li><a href="oferta.html" class="">Oferta indywidualna</a></li><li><a href="oferta-dla-grup.html" class="">Oferta dla grup</a></li><li><a href="oferta-dla-dzieci.html" class="">Oferta dla dzieci</a></li><li><a href="cennik.html" class="">Cennik</a></li><li><a href="dla-kogo.html" class="" aria-current="page">Dla kogo są nasze doświadczenia?</a></li><li><a href="kontakt.html" class="is-cta">Kontakt</a></li></ul>
   <hr class="menu__sep">
   <ul class="menu__small">
     <li><a href="index.html">Strona główna</a></li>
@@ -61,6 +61,16 @@
   btn.addEventListener('click',function(){set(menu.getAttribute('data-open')!=='true');});
   scrim.addEventListener('click',function(){set(false);});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});
+
+  var f=document.getElementById('formKontakt');
+  if(f && f.getAttribute('data-demo')==='true'){
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      var st=document.getElementById('formStatus');
+      if(!f.checkValidity()){ f.reportValidity(); return; }
+      st.textContent='Formularz działa w trybie demonstracyjnym — wysyłka nie jest jeszcze podłączona.';
+    });
+  }
 })();
 </script>
 </body>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kontakt — Sensoria</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="page-contact">
+<a class="back" href="dla-kogo.html" onclick="if(history.length>1){history.back();return false;}">Powrót</a>
+<div class="scrim" id="scrim" data-open="false"></div>
+<button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="menu">
+  <span></span><span></span><span></span>
+</button>
+<nav class="menu" id="menu" data-open="false" aria-label="Menu główne">
+  <ul><li><a href="nasza-idea.html" class="">Nasza idea</a></li><li><a href="oferta.html" class="">Oferta indywidualna</a></li><li><a href="oferta-dla-grup.html" class="">Oferta dla grup</a></li><li><a href="oferta-dla-dzieci.html" class="">Oferta dla dzieci</a></li><li><a href="cennik.html" class="">Cennik</a></li><li><a href="dla-kogo.html" class="">Dla kogo są nasze doświadczenia?</a></li><li><a href="kontakt.html" class="is-cta" aria-current="page">Kontakt</a></li></ul>
+  <hr class="menu__sep">
+  <ul class="menu__small">
+    <li><a href="index.html">Strona główna</a></li>
+  </ul>
+  <hr class="menu__sep">
+  <ul class="menu__small">
+    <li><a href="#">Regulamin i wsparcie</a></li>
+    <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
+  </ul>
+</nav>
+<main class="page page--kontakt">
+  <div class="page__text" style="background-image:url('img/tlo-papier.jpg');background-size:cover;background-position:center;">
+    <div class="page__body page__body--kontakt">
+      <p class="eyebrow">Kontakt</p>
+      <h1 class="kontakt__title">Stwórzmy razem<br><em>dobry czas.</em></h1>
+      <p class="kontakt__lead">Masz pomysł na spotkanie, chcesz zapytać o wolny termin albo przygotować doświadczenie dla swojej grupy? Napisz kilka słów &mdash; porozmawiamy o szczegółach.</p>
+
+      <div class="kontakt__block">
+        <p class="kontakt__label">Zadzwoń</p>
+        <a class="kontakt__phone" href="tel:+48000000000">[TELEFON]</a>
+      </div>
+
+      <div class="kontakt__block">
+        <p class="kontakt__label">Napisz wiadomość</p>
+        <!-- Wysyłka: podłącz action do własnego skryptu PHP lub usługi typu Formspree. -->
+        <form class="form" id="formKontakt" action="#" method="post" data-demo="true">
+          <div class="form__row">
+            <div class="form__field">
+              <label for="imie">Imię i nazwisko <span aria-hidden="true">*</span></label>
+              <input type="text" id="imie" name="imie" placeholder="Jak masz na imię?" required autocomplete="name">
+            </div>
+            <div class="form__field">
+              <label for="email">Adres e-mail <span aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" placeholder="twoj@email.pl" required autocomplete="email">
+            </div>
+          </div>
+          <div class="form__field">
+            <label for="wiadomosc">Treść wiadomości <span aria-hidden="true">*</span></label>
+            <textarea id="wiadomosc" name="wiadomosc" rows="5" placeholder="Opowiedz krótko, czego potrzebujesz..." required></textarea>
+          </div>
+          <div class="form__consent">
+            <input type="checkbox" id="zgoda" name="zgoda" required>
+            <label for="zgoda">Wyrażam zgodę na kontakt w sprawie mojego zapytania. Wiem, że moje dane zostaną użyte wyłącznie do odpowiedzi na tę wiadomość. <a href="polityka-prywatnosci.html">Polityka prywatności</a>.</label>
+          </div>
+          <button type="submit" class="form__submit">Wyślij wiadomość</button>
+          <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+    <div class="page__nav"><a href="dla-kogo.html">&lt;WRÓĆ</a><a href="index.html">STRONA GŁÓWNA</a></div>
+  </div>
+  <div class="page__media"><img src="img/cienie.jpg" alt="Kontakt"></div>
+</main>
+<script>
+(function(){
+  var btn=document.getElementById('menuBtn'),menu=document.getElementById('menu'),
+      close=document.getElementById('menuClose'),scrim=document.getElementById('scrim');
+  function set(open){
+    menu.setAttribute('data-open',open);scrim.setAttribute('data-open',open);
+    btn.setAttribute('aria-expanded',open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  btn.addEventListener('click',function(){set(menu.getAttribute('data-open')!=='true');});
+  scrim.addEventListener('click',function(){set(false);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});
+
+  var f=document.getElementById('formKontakt');
+  if(f && f.getAttribute('data-demo')==='true'){
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      var st=document.getElementById('formStatus');
+      if(!f.checkValidity()){ f.reportValidity(); return; }
+      st.textContent='Formularz działa w trybie demonstracyjnym — wysyłka nie jest jeszcze podłączona.';
+    });
+  }
+})();
+</script>
+</body>
+</html>
